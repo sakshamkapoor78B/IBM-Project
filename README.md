@@ -4,7 +4,7 @@ This project predicts house prices using **ensemble learning** — instead
 of relying on one model, it combines several models together so the
 final prediction is more accurate.
 
-🔗 **Live demo:** _add your Railway link here_
+🔗 **Live demo:** ibm-project-production-3c74.up.railway.app
 
 ---
 

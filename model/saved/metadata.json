@@ -1,0 +1,92 @@
+{
+  "best_model": "STACKING ENSEMBLE",
+  "metrics": {
+    "Random Forest (bagging)": {
+      "mae": 21575.69,
+      "rmse": 28035.46,
+      "r2": 0.9074
+    },
+    "Extra Trees (bagging)": {
+      "mae": 20447.2,
+      "rmse": 26699.53,
+      "r2": 0.916
+    },
+    "Gradient Boosting (boosting)": {
+      "mae": 19852.62,
+      "rmse": 25638.4,
+      "r2": 0.9225
+    },
+    "AdaBoost (boosting)": {
+      "mae": 36967.85,
+      "rmse": 47581.34,
+      "r2": 0.7331
+    },
+    "XGBoost (boosting)": {
+      "mae": 19536.97,
+      "rmse": 25356.82,
+      "r2": 0.9242
+    },
+    "VOTING ENSEMBLE": {
+      "mae": 21504.62,
+      "rmse": 27823.97,
+      "r2": 0.9087
+    },
+    "STACKING ENSEMBLE": {
+      "mae": 19002.18,
+      "rmse": 24607.74,
+      "r2": 0.9286
+    }
+  },
+  "feature_importances": {
+    "area_sqft": 0.3606,
+    "age_years": 0.3479,
+    "location_score": 0.2548,
+    "bedrooms": 0.0103,
+    "bathrooms": 0.0074,
+    "garage_spaces": 0.003,
+    "stories": 0.0029,
+    "has_basement": 0.0023,
+    "near_main_road": 0.0016,
+    "has_pool": 0.0015,
+    "furnishing_unfurnished": 0.0014,
+    "condition_fair": 0.0014,
+    "condition_excellent": 0.0013,
+    "condition_good": 0.0013,
+    "furnishing_semi-furnished": 0.0011,
+    "furnishing_furnished": 0.0009,
+    "condition_poor": 0.0004
+  },
+  "numeric_features": [
+    "area_sqft",
+    "bedrooms",
+    "bathrooms",
+    "stories",
+    "garage_spaces",
+    "age_years",
+    "location_score",
+    "has_pool",
+    "has_basement",
+    "near_main_road"
+  ],
+  "categorical_features": [
+    "furnishing",
+    "condition"
+  ],
+  "categorical_options": {
+    "furnishing": [
+      "furnished",
+      "semi-furnished",
+      "unfurnished"
+    ],
+    "condition": [
+      "excellent",
+      "fair",
+      "good",
+      "poor"
+    ]
+  },
+  "xgboost_available": true,
+  "target": "price",
+  "n_train_rows": 2000,
+  "n_test_rows": 500
+}

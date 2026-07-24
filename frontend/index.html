@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House Price Prediction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="blueprint-bg" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M6 24L24 8L42 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M11 20V40H37V20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M20 40V28H28V40" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="brand-text">
+      <span class="brand-name">House Price Prediction</span>
+    </div>
+  </div>
+  <div class="header-status">
+    <span class="status-dot" id="statusDot"></span>
+    
+  </div>
+</header>
+
+<main>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow"></p>
+      <h1>One Property.<br>Many Suggestions<br><span class="hero-accent">One result.</span></h1>
+      <p class="hero-lede">
+      </p>
+      <a href="#appraisal-form" class="cta-button">Open a New Case File &darr;</a>
+    </div>
+    <div class="hero-diagram" aria-hidden="true">
+      <svg viewBox="0 0 360 320" class="house-blueprint">
+        <polyline points="20,150 180,40 340,150" class="bp-line bp-roof" />
+        <rect x="55" y="150" width="250" height="140" class="bp-line bp-walls" />
+        <line x1="180" y1="40" x2="180" y2="150" class="bp-line bp-dim" />
+        <rect x="140" y="200" width="45" height="90" class="bp-line bp-door" />
+        <rect x="220" y="180" width="50" height="45" class="bp-line bp-window" />
+        <line x1="245" y1="180" x2="245" y2="225" class="bp-line bp-dim" />
+        <line x1="220" y1="202" x2="270" y2="202" class="bp-line bp-dim" />
+        <text x="180" y="310" text-anchor="middle" class="bp-label">EXHIBIT A — SUBJECT PROPERTY</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===================== FORM ===================== -->
+  <section class="appraisal-form" id="appraisal-form">
+    <div class="form-heading">
+      <p class="eyebrow">Step 1</p>
+      <h2>Property Particulars</h2>
+      <p class="section-sub">Every field below feeds directly into the models.</p>
+    </div>
+
+    <form id="houseForm" class="ledger">
+
+      <div class="ledger-group">
+        <h3 class="ledger-group-title">Size &amp; Layout</h3>
+        <div class="field-grid">
+          <label class="field">
+            <span class="field-label">Living Area (sq ft)</span>
+            <input type="number" name="area_sqft" min="300" max="10000" value="1800" required>
+          </label>
+          <label class="field">
+            <span class="field-label">Bedrooms</span>
+            <input type="number" name="bedrooms" min="1" max="8" value="3" required>
+          </label>
+          <label class="field">
+            <span class="field-label">Bathrooms</span>
+            <input type="number" name="bathrooms" min="1" max="6" value="2" required>
+          </label>
+          <label class="field">
+            <span class="field-label">Stories</span>
+            <input type="number" name="stories" min="1" max="4" value="2" required>
+          </label>
+        </div>
+      </div>
+
+      <div class="ledger-group">
+        <h3 class="ledger-group-title">Condition &amp; Age</h3>
+        <div class="field-grid">
+          <label class="field">
+            <span class="field-label">Age (years)</span>
+            <input type="number" name="age_years" min="0" max="120" value="10" step="0.5" required>
+          </label>
+          <label class="field">
+            <span class="field-label">Overall Condition</span>
+            <select name="condition" required>
+              <option value="excellent">Excellent</option>
+              <option value="good" selected>Good</option>
+              <option value="fair">Fair</option>
+              <option value="poor">Poor</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="field-label">Furnishing</span>
+            <select name="furnishing" required>
+              <option value="furnished">Furnished</option>
+              <option value="semi-furnished" selected>Semi-furnished</option>
+              <option value="unfurnished">Unfurnished</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="field-label">Garage Spaces</span>
+            <input type="number" name="garage_spaces" min="0" max="5" value="2" required>
+          </label>
+        </div>
+      </div>
+
+      <div class="ledger-group">
+        <h3 class="ledger-group-title">Location &amp; Amenities</h3>
+        <div class="field-grid">
+          <label class="field field-wide">
+            <span class="field-label">Location Score <em>(1 = rural, 10 = prime district)</em></span>
+            <div class="range-row">
+              <input type="range" name="location_score" min="1" max="10" step="0.1" value="6.5" id="locationRange">
+              <output for="locationRange" id="locationOutput">6.5</output>
+            </div>
+          </label>
+          <label class="field-check">
+            <input type="checkbox" name="has_pool">
+            <span>Swimming Pool</span>
+          </label>
+          <label class="field-check">
+            <input type="checkbox" name="has_basement" checked>
+            <span>Basement</span>
+          </label>
+          <label class="field-check">
+            <input type="checkbox" name="near_main_road">
+            <span>Adjacent to Main Road</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="cta-button submit-btn" id="submitBtn">
+          <span>Click Here For Evalution</span>
+        </button>
+        <p class="form-error" id="formError" role="alert"></p>
+      </div>
+    </form>
+  </section>
+
+  <!-- ===================== RESULTS ===================== -->
+  <section class="results" id="results" hidden>
+    <div class="form-heading">
+      <p class="eyebrow">Step 2</p>
+      <h2>House Value Report</h2>
+      <p class="section-sub"></p>
+    </div>
+
+    <div class="verdict-card">
+      <div class="verdict-seal" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" /></svg>
+        <span>OFFICIAL<br>VALUATION</span>
+      </div>
+      <div class="verdict-content">
+        <p class="verdict-label">Estimated Market Value</p>
+        <p class="verdict-figure" id="verdictFigure">$0</p>
+        <p class="verdict-meta">
+          by <strong id="verdictModel">—</strong>
+          &nbsp;·&nbsp; Appraiser spread: <span id="verdictSpread">—</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="panel-heading">
+      <h3>Review Panel</h3>
+      <p class="section-sub">Each model examined the same case independently. Bars show how their estimates compare to the final prediction.</p>
+    </div>
+    <div class="appraiser-panel" id="appraiserPanel"></div>
+
+    <div class="importance-block">
+      <h3>What Weighs Most</h3>
+      <p class="section-sub"></p>
+      <div id="importanceChart" class="importance-chart"></div>
+    </div>
+  </section>
+
+  <!-- ===================== MODEL PERFORMANCE ===================== -->
+  <section class="performance" id="performance">
+    <div class="form-heading">
+      <p class="eyebrow"></p>
+      <h2>Track Record</h2>
+      <p class="section-sub"></p>
+    </div>
+    <div class="metrics-table-wrap">
+      <table class="metrics-table" id="metricsTable">
+        <thead>
+          <tr><th>Model</th><th>R&sup2;</th><th>MAE</th><th>RMSE</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p> A House Price Prediction demonstration built with an ensemble of bagging &amp; boosting regressors (Random Forest,Gradient Boosting, AdaBoost) combined via Voting &amp; Stacking.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
